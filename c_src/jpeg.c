@@ -30,14 +30,11 @@ decode_erl(ErlNifEnv* env, int argc, const ERL_NIF_TERM argv[])
   enif_alloc_binary(TJBUFSIZEYUV(width, height, TJ_420), &yuv);
   
   int stride_size = width*height;
-
   memcpy(yuv.data, yuyv.data, stride_size);
   int i;
-  int w = width/2;
-  int h = height/2;
-  for(i = 0; i < h; i++) {
-    memcpy(yuv.data + stride_size + i*w, yuyv.data + stride_size + i*w*2, w);
-    memcpy(yuv.data + stride_size*5/4 + i*w, yuyv.data + stride_size*3/2 + i*w*2, w);
+  for(i = 0; i < height/2; i++) {
+    memcpy(yuv.data + stride_size + i*width/2, yuyv.data + stride_size + i*width, width/2);
+    memcpy(yuv.data + stride_size*5/4 + i*width/2, yuyv.data + stride_size*3/2 + i*width, width/2);
   }
   
   enif_release_binary(&yuyv);
