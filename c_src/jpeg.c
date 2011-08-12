@@ -43,7 +43,7 @@ decode_erl(ErlNifEnv* env, int argc, const ERL_NIF_TERM argv[])
 
 static ErlNifFunc jpeg_funcs[] =
 {
-    {"decode", 1, decode_erl}
+    {"decode_yuv", 1, decode_erl}
 };
 
 ERL_NIF_INIT(jpeg, jpeg_funcs, NULL, NULL, NULL, NULL)
