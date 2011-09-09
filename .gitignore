@@ -1,2 +1,4 @@
 ebin
 priv
+*.deb
+tmproot
